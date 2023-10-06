@@ -4,11 +4,17 @@ public abstract class Persona {
     //Atributos universales a personas
     protected String nombre;
     protected int edad;
-    protected long cedula;
     protected char sexo;
+    protected String tipo_documento;
+    protected String num_documento;
+    protected String telefono;
+    protected String direccion;
+    protected String correo;
+    
+    
     protected static int numPersonas=0;
 
-    //constructores
+    //constructores----------------------------------------------------------
     public Persona(){
         numPersonas++;
     }
@@ -19,4 +25,20 @@ public abstract class Persona {
         this.sexo=sexo;
         numPersonas++;
     }
+    
+    //-----------------------------------------------------------------------
+    //método abstracto, obligamos a que se use en empleado y cliente
+    
+    public abstract String toString();
+    
+    
+    
+    
+    //-----------------------------------------------------------------------
+    
+    
+    
+    
+    
+    
 }
