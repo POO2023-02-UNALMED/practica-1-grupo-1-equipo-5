@@ -6,7 +6,7 @@ public class Habitacion {
 	private String num_habitacion;
     private int capacidad;
     private double precio;
-    private ArrayList<Reserva> reservas=new ArrayList<Reserva>();
+    
     private double calificacion;
     private String reseñas;
 

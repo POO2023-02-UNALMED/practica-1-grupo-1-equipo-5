@@ -1,5 +1,7 @@
 package Hotel.servicios;
 
+import java.util.ArrayList;
+
 public class Reserva {
 	
 	//atributos----------------------------------------------------------
@@ -8,6 +10,7 @@ public class Reserva {
 	private Pago factura;
 	private String ingreso;
 	private String salida;
+	private ArrayList<Reserva> reservas=new ArrayList<Reserva>();
 	
 	//------------------------------------------------------------------
 	
