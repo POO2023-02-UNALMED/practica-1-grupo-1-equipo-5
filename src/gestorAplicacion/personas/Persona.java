@@ -18,10 +18,11 @@ public abstract class Persona {
     public Persona(){
         numPersonas++;
     }
-    public Persona(String nombre, int edad, long cedula, char sexo){
+    public Persona(String nombre, int edad, String tipo_doc ,long cedula, char sexo){
         this.nombre=nombre;
         this.edad=edad;
-        this.cedula=cedula;
+        this.tipo_documento=tipo_doc;
+        this.num_documento=cedula;
         this.sexo=sexo;
         numPersonas++;
     }
