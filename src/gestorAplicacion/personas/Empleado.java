@@ -13,7 +13,7 @@ public class Empleado extends Persona{
     public Empleado(){
         super();
     }
-    public Empleado(String nombre, int edad, long cedula, char sexo, String ID, String cargo, Hotel hotel, double sueldo){
+    public Empleado(String nombre, int edad, String tipo_doc,String cedula, char sexo, String ID, String cargo, Hotel hotel, double sueldo){
         super();
         this.IDempleado=ID;
         this.cargo=rol;

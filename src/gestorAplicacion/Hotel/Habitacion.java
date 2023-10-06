@@ -1,12 +1,11 @@
 package Hotel.servicios;
 import java.util.ArrayList;
 public class Habitacion {
-    //Atributos
-    private String medidas;
+    //Atributos----------------------------------------------
+	private Hotel hotel;
+	private String num_habitacion;
     private int capacidad;
-    private int precio;
-    private Hotel hotel;
-    private int numero;
+    private double precio;
     private ArrayList<Reserva> reservas=new ArrayList<Reserva>();
     private double calificacion;
     private String reseñas;
@@ -14,7 +13,7 @@ public class Habitacion {
     //Contructores
     public Habitacion(){
     }
-    public Habitacion(String medidas, int capacidad, int precio, Hotel hotel){
+    public Habitacion(String medidas, int capacidad, double precio, Hotel hotel){
         this.medidas=medidas;
         this.capacidad=capacidad;
         this.precio=precio;

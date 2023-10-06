@@ -5,7 +5,6 @@ public class Cliente extends Persona{
     //Atributos especificos de clientes
 	private Hotel hotel;
 	private Habitacion habitacion;
-    private double factura;
     private Gestion_reserva reserva;
 
     //Contructores---------------------------------------------------
