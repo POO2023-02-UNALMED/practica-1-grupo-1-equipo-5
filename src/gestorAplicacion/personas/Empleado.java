@@ -33,7 +33,7 @@ public class Empleado extends Persona{
                "Sexo: " + sexo + "\n" +
                "ID Empleado: " + IDempleado + "\n" +
                "Rol: " + rol + "\n" +
-               "Hotel: " + hotel.getNombre() + "\n"  // Suponiendo que Hotel tiene un método getNombre()
+               "Hotel: " + hotel.getNombre() + "\n" ; // Suponiendo que Hotel tiene un método getNombre()
     }
     
     
