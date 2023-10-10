@@ -63,16 +63,19 @@ public class Hotel {
 	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
-	public ArrayList<Actividades> getcatalogoSer() {
+	public ArrayList<Servicio> getCatalogoSer() {
 		return catalogoSer;
 	}
-	public void setcatalogoSer(ArrayList<Actividades> catalogoSer) {
+	public void setCatalogoSer(ArrayList<Servicio> catalogoSer) {//a cada servicio se le agrega este hotel a su lista de hoteles
 		this.catalogoSer = catalogoSer;
+		for (Servicio servicio : catalogoSer) {
+			servicio.addHotel(this);
+		}
 	}
 	public ArrayList<Empleado> getEmpleados() {
 		return empleados;
 	}
-	public void setEmpleados(ArrayList<Empleado> empleados) {
+	public void setEmpleados(ArrayList<Empleado> empleados) { //se debe hacer un proceso analogo que en servicio
 		this.empleados = empleados;
 	}
 	public int getNumClientes() {
