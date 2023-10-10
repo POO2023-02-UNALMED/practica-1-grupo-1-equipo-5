@@ -8,7 +8,7 @@ public class Hotel {
     double calificacion;
     String reseñas;
     private ArrayList<Habitacion> habitaciones= new ArrayList<Habitacion>();
-    private ArrayList<Servicio> catalogoAct= new ArrayList<Actividades>();
+    private ArrayList<Servicio> catalogoSer= new ArrayList<Servicio>();
     private ArrayList<Empleado> empleados= new ArrayList<Empleado>();
     private int numClientes;
 
@@ -28,9 +28,10 @@ public class Hotel {
         //h.setNumero(habitaciones.size());
     }
     
-    public void addCatalogoAct(Servicio s) {
-    	catalogoAct.add(s);
-    }
+    public void addServicio(Servicio s) { //cuando se agrega un servicio a un hotel, tambien se agrega a ese servicio el hotel
+    	catalogoSer.add(s);
+    	s.addHotel(this);
+    } 
     
 	public String getUbicacion() {
 		return ubicacion;
@@ -62,11 +63,11 @@ public class Hotel {
 	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
-	public ArrayList<Actividades> getCatalogoAct() {
-		return catalogoAct;
+	public ArrayList<Actividades> getcatalogoSer() {
+		return catalogoSer;
 	}
-	public void setCatalogoAct(ArrayList<Actividades> catalogoAct) {
-		this.catalogoAct = catalogoAct;
+	public void setcatalogoSer(ArrayList<Actividades> catalogoSer) {
+		this.catalogoSer = catalogoSer;
 	}
 	public ArrayList<Empleado> getEmpleados() {
 		return empleados;
@@ -81,5 +82,5 @@ public class Hotel {
 		this.numClientes = numClientes;
 	}
     
-    //nota2: hay que añadir metodos add para los atributos catalogoAct y empleados
+    //nota2: hay que añadir metodos add para el atributo empleados
 }

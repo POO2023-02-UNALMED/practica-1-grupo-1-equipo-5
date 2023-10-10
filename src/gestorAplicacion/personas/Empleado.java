@@ -7,7 +7,9 @@ public class Empleado extends Persona{
     private String IDempleado;
     private String cargo;
     private Hotel hotel;
-    private double sueldo= 1100000;     //el sueldo por defecto es un salario minimo.
+    private double sueldo= 1100000;
+    private Servicio servicio; //no se si un empleado pueda tener varios servicio a cargo
+    //el sueldo por defecto es un salario minimo.
 
     //constructores---------------------------------------------------------------------
     public Empleado(){
@@ -21,6 +23,10 @@ public class Empleado extends Persona{
         this.sueldo=sueldo;
     }
     
+    public void setServicio(Servicio s) {
+    	this.servicio = s;
+    	s.addEmpleado(this);
+    } 
     //--------------------------------------------------------------------
     
     //usando el metodo abstracto de la clase padre Persona

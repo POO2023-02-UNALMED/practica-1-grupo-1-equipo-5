@@ -2,27 +2,33 @@ package gestorAplicacion.hotel;
 
 import java.util.ArrayList;
 
-public enum Servicio {
-    PISCINA("Piscina", 10.0, "9:00 - 18:00"),
-    TENNIS("Tennis", 15.0, "10:00 - 20:00"),
-    SPA("Spa", 30.0, "11:00 - 19:00"),
-    SAUNA("Sauna", 12.0, "12:00 - 22:00"),
-    TURCO("Turco", 8.0, "14:00 - 20:00"),
-    MAQUINA_ARCADE("Máquina Arcade", 2.0, "9:00 - 22:00");
+import gestorAplicacion.personas.Empleado;
 
+public class Servicio {
     private String nombre;
     private double precio;
     private String horario;
     private ArrayList<Hotel> hoteles;
     private ArrayList<Empleado> empleados;
-
-    Servicio(String nombre, double precio, String horario) {
+    Servicio(String nombre, double precio, String horario,  ArrayList<Hotel> hoteles,  ArrayList<Empleado> empleados) {
         this.nombre = nombre;
         this.precio = precio;
         this.horario = horario;
+        this.hoteles = hoteles;
+        this.empleados = empleados;
         
     }
 
+    public void addHotel(Hotel h) {
+		hoteles.add(h);
+		h.addServicio(this);
+	}
+    
+    public void addEmpleado(Empleado e) {
+		empleados.add(e);
+		e.setServicio(this);
+	}
+    
     public String getNombre() {
         return nombre;
     }
@@ -43,13 +49,17 @@ public enum Servicio {
         return empleados;
     }
 
-	public void setHoteles(ArrayList<Hotel> hoteles) {
+	public void setHoteles(ArrayList<Hotel> hoteles) { //si se usa el set, se garantiza que cada hotel que tiene este servicio lo tenga como atributo
 		this.hoteles = hoteles;
-	}
+		for (Hotel hotel : hoteles) {
+			hotel.addServicio(this);
+		}
+	} 
 
-	public void setEmpleados(ArrayList<Empleado> empleados) {
+	public void setEmpleados(ArrayList<Empleado> empleados) {//lo mismo que en hotel
 		this.empleados = empleados;
-	}
-    
-    
+		for (Empleado empleado : empleados) {
+			empleado.setServicio(this);
+		}
+	}  
 }
