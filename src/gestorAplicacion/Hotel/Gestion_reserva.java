@@ -1,4 +1,4 @@
-package Hotel.servicios;
+package gestorAplicacion.hotel;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Hotel.personas;
+package gestorAplicacion.personas;
 
 public abstract class Persona {
     //Atributos universales a personas

@@ -1,4 +1,4 @@
-package Hotel.personas;
+package gestorAplicacion.personas;
 import Hotel.servicios.Hotel;
 
 
