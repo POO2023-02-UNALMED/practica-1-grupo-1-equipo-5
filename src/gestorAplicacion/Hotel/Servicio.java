@@ -1,4 +1,4 @@
-package gestorAplicacion.hotel;
+package gestorAplicacion.Hotel;
 
 import java.util.ArrayList;
 
@@ -8,19 +8,19 @@ public class Servicio {
     private String nombre;
     private double precio;
     private String horario;
-    private ArrayList<Hotel> hoteles;
+    private Hotel hotel;
     private ArrayList<Empleado> empleados;
-    Servicio(String nombre, double precio, String horario,  ArrayList<Hotel> hoteles,  ArrayList<Empleado> empleados) {
+    Servicio(String nombre, double precio, String horario,  Hotel hotel,  ArrayList<Empleado> empleados) {
         this.nombre = nombre;
         this.precio = precio;
         this.horario = horario;
-        this.hoteles = hoteles;
+        this.hotel = hotel;
         this.empleados = empleados;
         
     }
 
-    public void addHotel(Hotel h) {
-		hoteles.add(h);
+    public void setHotel(Hotel h) {
+        this.hotel=hotel;
 		h.addServicio(this);
 	}
     
@@ -41,20 +41,13 @@ public class Servicio {
         return horario;
     }
 
-    public ArrayList<Hotel> getHoteles() {
-        return hoteles;
+    public Hotel getHotel() {
+        return hotel;
     }
 
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
-
-	public void setHoteles(ArrayList<Hotel> hoteles) { //si se usa el set, se garantiza que cada hotel que tiene este servicio lo tenga como atributo
-		this.hoteles = hoteles;
-		for (Hotel hotel : hoteles) {
-			hotel.addServicio(this);
-		}
-	} 
 
 	public void setEmpleados(ArrayList<Empleado> empleados) {//lo mismo que en hotel
 		this.empleados = empleados;

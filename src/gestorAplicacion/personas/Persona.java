@@ -6,7 +6,7 @@ public abstract class Persona {
     protected int edad;
     protected char sexo;
     protected String tipo_documento;
-    protected String num_documento;
+    protected long num_documento;
     protected String telefono;
     protected String direccion;
     protected String correo;
