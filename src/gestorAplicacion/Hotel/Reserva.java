@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 package gestorAplicacion.hotel;
-
+import personas.*;
+=======
+package gestorAplicacion.Hotel;
+import gestorAplicacion.personas.*;
+>>>>>>> b8faa37d6b396d16d12d49b55121a6bef5b700b4
 import java.util.ArrayList;
 
 public class Reserva {
@@ -7,10 +12,11 @@ public class Reserva {
 	//atributos----------------------------------------------------------
 	
 	private Cliente cliente;
+	private Habitacion habitacion;
 	private Pago factura;
 	private String ingreso;
 	private String salida;
-	private ArrayList<Reserva> reservas=new ArrayList<Reserva>();
+	private ArrayList<Servicio> servicios= new ArrayList<Servicio>();
 	
 	//------------------------------------------------------------------
 	
