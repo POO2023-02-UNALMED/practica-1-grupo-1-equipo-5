@@ -16,6 +16,7 @@ public class Reserva {
 	private Pago factura;
 	private String ingreso;
 	private String salida;
+	private int total;
 	private ArrayList<Servicio> servicios= new ArrayList<Servicio>();
 	
 	//------------------------------------------------------------------

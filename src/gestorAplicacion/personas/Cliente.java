@@ -1,4 +1,4 @@
-package gestorAplicacion.personas;
+	package gestorAplicacion.personas;
 import gestorAplicacion.Hotel.*;
 import java.util.ArrayList;
 public class Cliente extends Persona{
@@ -37,7 +37,10 @@ public class Cliente extends Persona{
 
     //-----------------------------------------------------------------
     
-    
+    //Sitema de puntos (Funcionalidad)
+    public void acumlarPuntos(Pago) {
+    	int puntos= (double) (Pago.totalPago/15000)
+    }
     
     
     
