@@ -17,12 +17,12 @@ public class Reserva {
 	private String ingreso;
 	private String salida;
 	private int total;
+	private Servicio servicioAdicional;
 	private ArrayList<Servicio> servicios= new ArrayList<Servicio>();
 	
 	//------------------------------------------------------------------
 	
-	
-	
+		
 	
 	
 	
