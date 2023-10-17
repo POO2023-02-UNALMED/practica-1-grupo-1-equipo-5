@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Empleado extends Persona{
     //Atributos especificos de los empleados
-    private double IDempleado;
+    private String IDempleado;
     private ROL cargo;
     private Hotel hotel;
     private double sueldo;
@@ -15,73 +15,53 @@ public class Empleado extends Persona{
     public Empleado(){
         super();
     }
-    public Empleado(String nombre, int edad, TPD  tipoDocumento, long cedula, char sexo, String IDempleado, Hotel hotel, double sueldo){
-        super(nombre,edad,tipoDocumento,cedula,sexo);
-        this.IDempleado=IDempleado;
-        this.sueldo=sueldo;
-        this.setHotel(hotel);
+    public Empleado(String nombre, int edad, TPD tipoDocumento, long cedula, char sexo, String IDempleado, Hotel hotel, double sueldo, ROL cargo) {
+        super(nombre, edad, tipoDocumento, cedula, sexo);
+        this.IDempleado = IDempleado;
+        this.sueldo = sueldo;
+        this.cargo = cargo;
+        this.hotel = hotel;
     }
-    //metodos (provisional)
 
+    // Métodos
+    // ...
 
-    // set y get
-    public void setCargo(String cargo) {
-    	this.cargo = cargo;
+    // Setters y getters
+    public void setCargo(ROL cargo) {
+        this.cargo = cargo;
     }
-    
-    public String getCargo() {
-    	return cargo;
+
+    public ROL getCargo() {
+        return cargo;
     }
 
     public void setSueldo(double sueldo) {
-    	this.sueldo = sueldo;
+        this.sueldo = sueldo;
     }
-    
+
     public double getSueldo() {
-    	return sueldo;
+        return sueldo;
     }
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-    
+
     public Hotel getHotel() {
-    	return hotel;
+        return hotel;
     }
 
-    public void setIDempleado(double IDempleado) {
-    	this.IDempleado = IDempleado;
+    public void setIDempleado(String IDempleado) {
+        this.IDempleado = IDempleado;
     }
 
-    public double getIDempleado() {
-    	return IDempleado;
-    }
-    
-    public ArrayList getServicio() {
-    	return listServicio;
+    public String getIDempleado() {
+        return IDempleado;
     }
 
-
-    //--------------------------------------------------------------------
-    
-    //usando el metodo abstracto de la clase padre Persona
-    
-    @Override
-    public String toString() {
-        return "Nombre: " + nombre + "\n" +
-               "Edad: " + edad + "\n" +
-               "Cédula: " + num_documento + "\n" + // num_documento es un atributo heredado de Persona
-               "Sexo: " + sexo + "\n" +
-               "ID Empleado: " + IDempleado + "\n" +
-               "Rol: " + cargo + "\n" +
-               "Hotel: " + hotel.getNombre(); // Suponiendo que Hotel tiene un método getNombre()
+    public ArrayList<Servicio> getServicio() {
+        return listServicio;
     }
-    
-    
-    //--------------------------------------------------------------------
-    
-    //Servicios-----------------------------------------------------------
-    
-    
-    
+
+    // Otros métodos, getters y setters...
 }
