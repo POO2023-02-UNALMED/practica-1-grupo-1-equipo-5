@@ -1,6 +1,7 @@
 package gestorAplicacion.personas;
 import gestorAplicacion.Hotel.*;
 import java.util.ArrayList;
+
 public class Cliente extends Persona{
 
     //Atributos especificos de clientes
