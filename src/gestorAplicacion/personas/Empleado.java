@@ -1,26 +1,20 @@
 package gestorAplicacion.personas;
 import gestorAplicacion.Hotel.*;
+import java.util.ArrayList;
 
 public class Empleado extends Persona{
     //Atributos especificos de los empleados
-    private double IDempleado;
-    private String cargo;
+    private String IDempleado;
+    private ROL cargo;
     private Hotel hotel;
-    private double sueldo= 1100000;
-    private Servicio servicio; //no se si un empleado pueda tener varios servicio a cargo
-    //el sueldo por defecto es un salario minimo.
+    private double sueldo;
+    private enum ROL {RECEPCIONISTA, GERENTE, CONSERJE, MANTENIMIENTO, SEGURIDAD, ENTRENADOR, MASAJISTA}
+    private ArrayList<Servicio> listServicio= new ArrayList<Reserva>();
 
     //constructores---------------------------------------------------------------------
     public Empleado(){
         super();
     }
-    public Empleado(String nombre, int edad, String tipo_doc,long cedula, char sexo, String cargo, Hotel hotel){
-        super(nombre,edad,tipo_doc,cedula,sexo);
-        this.cargo=cargo;
-        this.setHotel(hotel);
-    }
-    //metodos (provisional)
-
 
     // set y get
     public void setCargo(String cargo) {this.cargo = cargo;}
@@ -47,9 +41,9 @@ public class Empleado extends Persona{
 
 
     //--------------------------------------------------------------------
-    
+
     //usando el metodo abstracto de la clase padre Persona
-    
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + "\n" +
@@ -59,12 +53,55 @@ public class Empleado extends Persona{
                "ID Empleado: " + IDempleado + "\n" +
                "Rol: " + cargo + "\n" +
                "Hotel: " + hotel.getNombre(); // Suponiendo que Hotel tiene un método getNombre()
+
+    public Empleado(String nombre, int edad, TPD tipoDocumento, long cedula, char sexo, String IDempleado, Hotel hotel, double sueldo, ROL cargo) {
+        super(nombre, edad, tipoDocumento, cedula, sexo);
+        this.IDempleado = IDempleado;
+        this.sueldo = sueldo;
+        this.cargo = cargo;
+        this.hotel = hotel;
     }
-    
-    
-    //--------------------------------------------------------------------
-    
-    
-    
-    
+
+    // Métodos
+    // ...
+
+    // Setters y getters
+    public void setCargo(ROL cargo) {
+        this.cargo = cargo;
+
+    }
+
+    public ROL getCargo() {
+        return cargo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setIDempleado(String IDempleado) {
+        this.IDempleado = IDempleado;
+    }
+
+    public String getIDempleado() {
+        return IDempleado;
+    }
+
+    public ArrayList<Servicio> getServicio() {
+        return listServicio;
+    }
+
+    // Otros métodos, getters y setters...
 }
