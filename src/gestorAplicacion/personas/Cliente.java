@@ -9,8 +9,6 @@ public class Cliente extends Persona{
     private long IDcliente;
     private Habitacion habitacion;
     private int puntos;
-    private String MEMBRESIA;
-    private int equipaje;
     private ArrayList<Reserva> Historia= new ArrayList<Reserva>();
     private ArrayList<String> historia_comentario= new ArrayList<String>();
     private enum MEMBRESIA {BASIC, PLATA, ORO, DIAMANTE};
