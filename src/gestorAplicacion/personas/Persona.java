@@ -15,10 +15,8 @@ public abstract class Persona {
     protected String telefono;
     protected String direccion;
     protected String correo;
-    protected ArrayList<String> historia_comentario= new ArrayList<String>();
-    
-    
     protected static int numPersonas=0;
+    protected static ArrayList<Persona> personas= new ArrayList<Persona>();  //guarda todas las nstancias de la clase
 
     //constructores----------------------------------------------------------
     public Persona(){
@@ -34,6 +32,7 @@ public abstract class Persona {
         this.direccion = direccion;
         this.correo = correo;
         numPersonas++;
+        addPersonas(this);
     }
     
     public Persona (String nombre, int edad, TPD tipoDocumento ,long numDocumento, char sexo) {
@@ -43,9 +42,14 @@ public abstract class Persona {
          this.numDocumento = numDocumento;
          this.sexo = sexo;
          numPersonas++;
+         addPersonas(this);
     }
     
     //-----------------------------------------------------------------------
+    public static void addPersonas(Persona p){
+        if (!personas.contains(p)){personas.add(p);}
+    }
+
     public String getNombre() {
         return nombre;
     }

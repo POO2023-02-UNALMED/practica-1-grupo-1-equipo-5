@@ -16,6 +16,7 @@ public class Cliente extends Persona{
     private int equipaje;
     private ArrayList<Reserva> historia_reserva= new ArrayList<Reserva>();
     private Reserva reserva;
+    private static ArrayList<Cliente>clientes=new ArrayList<>();
 
     //Contructores---------------------------------------------------
     
@@ -32,7 +33,6 @@ public class Cliente extends Persona{
         this.puntos = 0;
         this.membresia = Cliente.MEMBRESIA.BASIC;
     }
-    
     public Cliente(String nombre, int edad, TPD tipoDocumento, long numDocumento, char sexo, Hotel hotel, long IDcliente) {
         super(nombre, edad, tipoDocumento, numDocumento, sexo);
         this.hotel = hotel;
@@ -41,45 +41,39 @@ public class Cliente extends Persona{
         this.membresia = Cliente.MEMBRESIA.BASIC;
     }
     
-    public Hotel getHotel() {
-        return hotel;
+    public static ArrayList<Cliente>getClientes(){
+        return clientes;
     }
 
-    public long getIDcliente() {
-        return IDcliente;
-    }
+    public Hotel getHotel() {return hotel;}
 
-    public Habitacion getHabitacion() {
-        return habitacion;
-    }
+    public void setHotel(Hotel hotel) {this.hotel = hotel;}
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
-    }
+    public void setIDcliente(long IDcliente) {this.IDcliente = IDcliente;}
 
-    public int getPuntos() {
-        return puntos;
-    }
+    public long getIDcliente() {return IDcliente;}
 
-    public MEMBRESIA getMembresia() {
-        return membresia;
-    }
+    public Habitacion getHabitacion() {return habitacion;}
 
-    public int getEquipaje() {
-        return equipaje;
-    }
+    public void setHabitacion(Habitacion habitacion) {this.habitacion = habitacion;}
 
-    public ArrayList<Reserva> getHistoriaReserva() {
-        return historia_reserva;
-    }
+    public int getPuntos() {return puntos;}
 
-    public void setHistoriaReserva(ArrayList<Reserva> historia_reserva) {
-        this.historia_reserva = historia_reserva;
-    }
+    public void setPuntos(int puntos) {this.puntos = puntos;}
 
-    public Reserva getReserva() {
-        return reserva;
-    }
+    public MEMBRESIA getMembresia() {return membresia;}
+
+    public void setMembresia(MEMBRESIA membresia) {this.membresia = membresia;}
+
+    public int getEquipaje() {return equipaje;}
+
+    public ArrayList<Reserva> getHistoriaReserva() {return historia_reserva;}
+
+    public void setHistoriaReserva(ArrayList<Reserva> historia_reserva) {this.historia_reserva = historia_reserva;}
+
+    public Reserva getReserva() {return reserva;}
+
+
     
     //----------------------------------------------------------------
     //usando el metodo abstracto de la clase padre Persona
@@ -126,7 +120,8 @@ public class Cliente extends Persona{
             }
             
             if (reserva != null) {
-                reserva.total -= descuento; //Realiza el descuento
+                double total=reserva.getFactura().getTotalPago();
+                reserva.getFactura().setTotalPago(total-descuento); //cambia el valor total a pagar por el precio tras aplicar el descuento
             }
             this.puntos -= puntos;
             return "Canje exitoso, se ha aplicado un descuento de " + descuento + " pesos";
