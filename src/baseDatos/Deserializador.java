@@ -1,61 +1,189 @@
 package baseDatos;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.List;
 
-import gestorAplicacion.*;
-
-
+import gestorAplicacion.Hotel.*;
+import gestorAplicacion.personas.*; //
 
 public class Deserializador {
-	public static <E> void deserializador(List<E> list, String className) {
-		FileInputStream fileIn;
-		try {
-			// Creamos una cadena con la ruta del archivo que vamos a cargar
-			String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
-			System.out.println(path);
-			// Utilizamos un file para crear este archivo si no existe aun
-			File archivo = new File(path);
-			archivo.createNewFile(); // Crea un nuevo archivo si no existe
+    static File archivo = new File("");
 
-			// Usamos un FileInputStream para poder saber de donde cargar el archivo
-			fileIn = new FileInputStream(path);
+    public static ArrayList<Habitacion> deserializarHamburgueseria() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
 
-			// Si el archivo esta vacio se lanza un throw EOFException y se muestra como un mensaje de vacio, pero si no se usa el objeto in para leer el archivo
-			ObjectInputStream in = new ObjectInputStream(fileIn);
+            ArrayList<Habitacion> lista_Habitaciones = (ArrayList<Habitacion>) o.readObject();
 
-			// Lee el listado de elementos
-			ArrayList<E> listado = (ArrayList<E>) in.readObject();
+            file.close();
+            o.close();
+            return lista_Habitaciones;
 
-			// Recorro el ArrayList
-			for (E el : listado) {
-				list.add(el);
-			}
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Habitacion>();
+        } catch (IOException e) {
+            return new ArrayList<Habitacion>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Habitacion>();
+        }
+    }
 
-			in.close();
-			fileIn.close();
+    public static ArrayList<Hotel> deserializarCalificacion() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Esta vacio");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+            ArrayList<Hotel> lista_Hoteles= (ArrayList<Hotel>) o.readObject();
 
-	/* Funcion para deserializar toda la aplicacion Generic IT  */
-	public static void deserializarTodo() {
-		Deserializador.deserializador(Cliente.getClientes(), "Clientes");
-		//Falta deserializar el resto de clases--------------------------------
-	}
-}
+            file.close();
+            o.close();
+            return lista_Hoteles;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Hotel>();
+        } catch (IOException e) {
+            return new ArrayList<Hotel>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Hotel>();
+        }
+    }
+
+    public static ArrayList<Pago> deserializarContabilidad() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Pago> lista_Pagos = (ArrayList<Pago>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Pagos;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Pago>();
+        } catch (IOException e) {
+            return new ArrayList<Pago>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Pago>();
+        }
+    }
+
+    public static ArrayList<Reserva> deserializarEmpleado() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Reserva> lista_Reservas = (ArrayList<Reserva>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Reservas;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Reserva>();
+        } catch (IOException e) {
+            return new ArrayList<Reserva>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Reserva>();
+        }
+    }
+
+
+    public static ArrayList<Servicio> deserializarnoFactura() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Servicio> lista_Servicios = (ArrayList<Servicio>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Servicios;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Servicio>();
+        } catch (IOException e) {
+            return new ArrayList<Servicio>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Servicio>();
+        }
+    }
+
+    public static ArrayList<Cliente> deserializarGaseosas() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\personas.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Cliente> lista_Clientes = (ArrayList<Cliente>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Clientes;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Cliente>();
+        } catch (IOException e) {
+            return new ArrayList<Cliente>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Cliente>();
+        }
+
+    }
+
+    public static ArrayList<Empleado> deserializarIngredientes() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\personas.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Empleado> lista_Empleados= (ArrayList<Empleado>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Empleados;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Empleado>();
+        } catch (IOException e) {
+            return new ArrayList<Empleado>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Empleado>();
+        }
+
+    }
+
+    public static ArrayList<Persona> deserializarInventario() {
+        try {
+            FileInputStream file = new FileInputStream(new File(archivo.getAbsolutePath() +
+                    "\\src\\baseDatos\\temp\\personas.txt"));
+            ObjectInputStream o = new ObjectInputStream(file);
+
+            ArrayList<Persona> lista_Personas = (ArrayList<Persona>) o.readObject();
+
+            file.close();
+            o.close();
+            return lista_Personas;
+
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Persona>();
+        } catch (IOException e) {
+            return new ArrayList<Persona>();
+        } catch (ClassNotFoundException e) {
+            return new ArrayList<Persona>();
+        }
+
+    }
+
+    }
