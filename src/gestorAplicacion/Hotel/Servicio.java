@@ -16,6 +16,9 @@ public class Servicio {
         this.horario = horario;
         this.hotel = hotel;
         this.empleados = empleados;
+        Pago.agregarServicio(this);
+
+        
         
     }
 
