@@ -1,54 +1,176 @@
 package baseDatos;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.List;
+import java.util.ArrayList;
 
-import gestorAplicacion*;
-
-/*
- * Se utiliza para serializar todos los objetos creados durante la ejecucion del proyecto
- * @author Erik Gonzalez
- * @author Felipe Miranda
- */
+import gestorAplicacion.Hotel.*;
+import gestorAplicacion.personas.*;
 
 public class Serializador {
-	/*
-	 * Serializamos una lista por el nombre de la clase
-	 * @param <E>       El generico se usa para poder agredar las clases que se crearon
-	 * @param lista     Una lista de objetos
-	 * @param className El nombre de la clase que queremos usar como nombre del archivo
-	 */
-	public static <E> void serializar(List<E> lista, String className) {
-		FileOutputStream fileOut;
+    static File archivo = new File("");
 
-		try {
-			String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
-			// Se crea un fileoutputstream para saber donde serializar los archivos
-			fileOut = new FileOutputStream(path);
-			// Se crea un objeto output stream para poder escribir en el archivo
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			// Guardamos la lista de objetos
-			out.writeObject(lista);
-			out.close();
-			fileOut.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public static void serializarHabitacion(ArrayList<Habitacion> lista) {
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
 
-	/* Serializamos todas las clases que necesitamos  */
-	public static void serializarTodo() {
-		Serializador.serializar(Cliente.getClientes(), "Clientes");
-		//falta serializar las clases
-		
-	}
+            o.writeObject(lista);
 
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+
+    }
+
+    public static void serializarHotel(ArrayList<Hotel> lista) {
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+
+    }
+
+    public static void serializarPago(ArrayList<Pago> lista) {
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+
+    }
+    public static void serializarReserva(ArrayList<Reserva> lista){
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+    }
+    public static void serializarServicio(ArrayList<Servicio> lista){
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Hotel.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+    }
+    public static void serializarCliente(ArrayList<Cliente> lista){
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Personas.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+        }catch(FileNotFoundException e){
+            System.out.println("Archivo no encontrado: "+e.getMessage());
+        }
+        catch(IOException e) {
+            System.out.println("Error de flujo de inicializacion: "+ e.getMessage());
+        }
+    }
+
+    public static void serializarEmpleado(ArrayList<Empleado> lista) {
+        try {
+        	FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Personas.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error de flujo de inicializacion: " + e.getMessage());
+        }
+    }
+
+    public static void serializarPersona(ArrayList<Persona> lista) {
+        try {
+            FileOutputStream f = new FileOutputStream(new File(archivo.getAbsolutePath()+
+                    "\\src\\baseDatos\\temp\\Personas.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            o.writeObject(lista);
+
+            o.close();
+            f.close();
+            System.out.println("La serialización se ha completado correctamente.");
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error de flujo de inicializacion: " + e.getMessage());
+        }
+    }
+    
 }
 
