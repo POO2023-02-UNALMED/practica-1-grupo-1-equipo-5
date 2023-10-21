@@ -5,10 +5,14 @@ import java.util.ArrayList;
 public class Cliente extends Persona{
 
     //Atributos especificos de clientes
+	public Pago pago;
+	private double dinero;
 	private Hotel hotel;
     private long IDcliente;
     private Habitacion habitacion;
     private int puntos;
+    private ArrayList<Pago> pagos= new ArrayList<Pago>();
+
     private ArrayList<Reserva> Historia= new ArrayList<Reserva>();
     private ArrayList<String> historia_comentario= new ArrayList<String>();
     private enum MEMBRESIA {BASIC, PLATA, ORO, DIAMANTE};
@@ -23,6 +27,11 @@ public class Cliente extends Persona{
     public Cliente(){
         super();
     }
+   
+    public Cliente(Pago pago){
+    	this.pago = pago;
+    }
+    
     public Cliente(String nombre, int edad, TPD tipo_doc, long cedula, char sexo) {
         super(nombre, edad, tipo_doc, cedula, sexo);
     }
@@ -44,7 +53,12 @@ public class Cliente extends Persona{
     public static ArrayList<Cliente>getClientes(){
         return clientes;
     }
-
+    public ArrayList<Pago> getPagos() {
+        return pagos;
+    }
+    public void setPago(Pago pago) {
+    	this.pago = pago;
+    }
     public Hotel getHotel() {return hotel;}
 
     public void setHotel(Hotel hotel) {this.hotel = hotel;}
@@ -73,7 +87,13 @@ public class Cliente extends Persona{
 
     public Reserva getReserva() {return reserva;}
 
+    public double getDinero() {
+        return dinero;
+    }
 
+    public void setDinero(double d) {
+        this.dinero =  d;
+    }
     
     //----------------------------------------------------------------
     //usando el metodo abstracto de la clase padre Persona
