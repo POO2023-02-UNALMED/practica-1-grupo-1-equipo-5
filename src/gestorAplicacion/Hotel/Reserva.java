@@ -114,8 +114,9 @@ public class Reserva {
 	        this.factura = factura;
 	        this.ingreso = ingreso;
 	        this.salida = salida;
-	        this.total = total;
 	        this.servicioAdicional = servicioAdicional;
+	        cotizarPrecio();
+
 	        
 	    }
 	 public void addService(Servicio service) {
@@ -126,7 +127,7 @@ public class Reserva {
 		    // Utiliza el método remove para eliminar el servicio
 		    servicios.remove(service);
 		}
-	 public int cotizarPrecio(){
+	 private void  cotizarPrecio(){
 		 int totalServicios = 0;
 		 int totalHabitacion = 0;
 	        
@@ -138,7 +139,6 @@ public class Reserva {
 	        }
 		 int pagar = totalServicios + totalHabitacion;
 		 setTotal(pagar);
-		 return pagar;
 		 
 		 
 	 }
