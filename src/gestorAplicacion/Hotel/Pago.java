@@ -1,5 +1,5 @@
 package gestorAplicacion.Hotel;
-import java.util.ArrayList;
+
 
 public class Pago {
 	
@@ -39,7 +39,20 @@ public class Pago {
     	return fecha_pago;
     }
     
+    public void setFecha_pago(String fecha_pago) {
+    	this.fecha_pago = fecha_pago;
+    }
     
+    @Override
+    
+    @Override
+    public String toString() {
+        return "Pago{" +
+                "tipo_servicio=" + tipo_servicio +
+                "total=" + total +
+                ", fecha_pago='" + fecha_pago + '\'' +
+                '}';
+    }
     
     
     
