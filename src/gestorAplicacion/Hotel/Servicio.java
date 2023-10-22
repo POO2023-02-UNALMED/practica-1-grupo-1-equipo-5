@@ -7,55 +7,26 @@ import gestorAplicacion.personas.Empleado;
 public class Servicio {
     private String nombre;
     private double precio;
-    private String horario;
-    private Hotel hotel;
-    private ArrayList<Empleado> empleados;
-    Servicio(String nombre, double precio, String horario,  Hotel hotel,  ArrayList<Empleado> empleados) {
+    private String hora_inicio;
+    private String hora_salida;
+
+    public Servicio(){}
+    Servicio(String nombre, double precio, String hora_inicio,  String hora_salida) {
         this.nombre = nombre;
         this.precio = precio;
-        this.horario = horario;
-        this.hotel = hotel;
-        this.empleados = empleados;
-        Pago.agregarServicio(this);
-
-        
-        
+        this.hora_inicio = hora_inicio;
+        this.hora_salida=hora_salida;
     }
+    //metodos set y get
 
-    public void setHotel(Hotel h) {
-        this.hotel=hotel;
-		h.addServicio(this);
-	}
-    
-    public void addEmpleado(Empleado e) {
-		empleados.add(e);
-		e.setServicio(this);
-	}
-    
+    public void setNombre(String nombre) {this.nombre = nombre;}
+
     public String getNombre() {
         return nombre;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
+    public void setPrecio(double precio) {this.precio = precio;}
 
-    public String getHorario() {
-        return horario;
-    }
+    public double getPrecio() {return precio;}
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public ArrayList<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-	public void setEmpleados(ArrayList<Empleado> empleados) {//lo mismo que en hotel
-		this.empleados = empleados;
-		for (Empleado empleado : empleados) {
-			empleado.setServicio(this);
-		}
-	}  
 }

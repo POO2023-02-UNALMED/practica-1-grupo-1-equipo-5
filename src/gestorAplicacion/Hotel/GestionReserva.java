@@ -1,6 +1,6 @@
 package gestorAplicacion.Hotel;
 import gestorAplicacion.personas.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class GestionReserva {
 	    private Cliente cliente;
