@@ -28,5 +28,25 @@ public class Servicio {
     public void setPrecio(double precio) {this.precio = precio;}
 
     public double getPrecio() {return precio;}
+    
+    public String getHora_inicio() {
+    	return hora_inicio;
+    }
+    
+    public void setHora_inicio(String hora_inicio) {
+    	this.hora_inicio = hora_inicio;
+    }
+    
+    public String getHora_salida() {
+        return hora_salida;
+    }
 
+    public void setHora_salida(String hora_salida) {
+        this.hora_salida = hora_salida;
+    }
+
+    @Override
+    public String toString() {
+        return "\n - " + getNombre() + ": " + getPrecio();
+    }
 }
