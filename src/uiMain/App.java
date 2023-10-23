@@ -45,6 +45,30 @@ public class App {
         hotelObj.addHabitaciones(new Habitacion(hotelObj, "106", 2, 200000.0, TipoHabitacion.DOBLE, false));
         hotelObj.addHabitaciones(new Habitacion(hotelObj,"107", 3, 200000.0, TipoHabitacion.SUITE, true));
         hotelObj.addHabitaciones(new Habitacion(hotelObj,"108", 2, 200000.0, TipoHabitacion.DOBLE, true));
+        
+	Cliente cl001 = new Cliente("Omar", "cc", "111421412", "323242442","cl001", hotelObj, "Gold", 2);
+        //GestionReserva gr001 = new GestionReserva(cl001, h)
+        // Inicio del Menu interactivo
+        System.out.println("---- Servicio de reserva ----\n");
 
+        do {
+            System.out.println("Escoja una opción: ");
+            System.out.println("1. Ver hoteles disponibles");
+            System.out.println("2. Gestionar reserva");
+            System.out.println("3. Gestion de pagos");
+            System.out.println("4. Comentarios y calificaciones");
+            System.out.println("5. Puntos");
+            System.out.println("6. Gestión de equipajes");
+            System.out.println("0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("---------- Hoteles ----------");
 
+                    for (Hotel hotel : hoteles) {
+                        System.out.println(hotel);
+                    }
+                    System.out.println("-----------------------------");
+                    break;
+		case 2:
 }
