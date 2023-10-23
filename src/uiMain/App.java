@@ -71,4 +71,8 @@ public class App {
                     System.out.println("-----------------------------");
                     break;
 		case 2:
+			    //code
+	    }
+	} while (opcion != 0); //close do
+    }
 }
