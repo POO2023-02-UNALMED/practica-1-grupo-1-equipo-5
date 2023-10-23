@@ -13,13 +13,13 @@ public class Cliente extends Persona{
     private int puntos;
     private ArrayList<Pago> pagos= new ArrayList<Pago>();
 
-    private ArrayList<Reserva> Historia= new ArrayList<Reserva>();
+    private ArrayList<GestionReserva> Historia= new ArrayList<GestionReserva>();
     private ArrayList<String> historia_comentario= new ArrayList<String>();
     private enum MEMBRESIA {BASIC, PLATA, ORO, DIAMANTE};
     private MEMBRESIA membresia;
     private int equipaje;
-    private ArrayList<Reserva> historia_reserva= new ArrayList<Reserva>();
-    private Reserva reserva;
+    private ArrayList<GestionReserva> historia_reserva= new ArrayList<GestionReserva>();
+    private GestionReserva reserva;
     private static ArrayList<Cliente>clientes=new ArrayList<>();
 
     //Contructores---------------------------------------------------
@@ -81,11 +81,11 @@ public class Cliente extends Persona{
 
     public int getEquipaje() {return equipaje;}
 
-    public ArrayList<Reserva> getHistoriaReserva() {return historia_reserva;}
+    public ArrayList<GestionReserva> getHistoriaReserva() {return historia_reserva;}
 
-    public void setHistoriaReserva(ArrayList<Reserva> historia_reserva) {this.historia_reserva = historia_reserva;}
+    public void setHistoriaReserva(ArrayList<GestionReserva> historia_reserva) {this.historia_reserva = historia_reserva;}
 
-    public Reserva getReserva() {return reserva;}
+    public GestionReserva getReserva() {return reserva;}
 
     public double getDinero() {
         return dinero;
