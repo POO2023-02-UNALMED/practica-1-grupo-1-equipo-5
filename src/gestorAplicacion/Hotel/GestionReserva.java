@@ -24,5 +24,54 @@ public class GestionReserva {
 	    public void aggServicio(Servicio servicio){
 	        this.serviciosAdicionales.add(servicio);
 	    }
+	    
+	    public Cliente getCliente(){
+	        return cliente;
+	    }
 
+	    public Habitacion getHabitacion(){
+	        return habitacion;
+	    }
+
+	    public String getIngreso() {
+	        return ingreso;
+	    }
+
+
+	    public void setIngreso(String ingreso) {
+	        this.ingreso = ingreso;
+	    }
+
+	    public String getSalida() {
+	        return salida;
+	    }
+
+	    public void setSalida(String salida) {
+	        this.salida = salida;
+	    }
+
+	    public List<Servicio> getServiciosAdicionales() {
+	        return serviciosAdicionales;
+	    }
+
+	    public void setServiciosAdicionales(List<Servicio> serviciosAdicionales) {
+	        this.serviciosAdicionales = serviciosAdicionales;
+	    }
+
+	    //Hacer la de ver factura
+	    //public Pago verFactura(){
+	      //  factura.toString();
+	    //}
+
+	    @Override
+	    public String toString() {
+	        return "GestionReserva{" +
+	                "cliente=" + cliente.toString() +
+	                ", habitacion=" + habitacion +
+	                ", ingreso='" + ingreso + '\'' +
+	                ", salida='" + salida + '\'' +
+	                ", serviciosAdicionales=" + serviciosAdicionales +
+	                "}";
+	    }
 	}
+	
