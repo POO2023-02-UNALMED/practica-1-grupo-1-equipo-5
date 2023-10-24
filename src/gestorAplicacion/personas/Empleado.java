@@ -29,5 +29,28 @@ public class Empleado extends Persona{
     public String getRol() {
         return rol;
     }
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(Double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String personaRol() {
+        return "Hola";
+    }
+    public void ascender() {
+
+    }
+    @Override
+    public String toString() {
+        return null;
+    }
+}
 
     
