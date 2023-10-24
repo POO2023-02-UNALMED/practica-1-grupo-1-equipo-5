@@ -3,51 +3,34 @@ package gestorAplicacion.personas;
 import java.util.ArrayList;
 
 public abstract class Persona {
-    //Atributos universales a personas
-    protected String nombre;
-    protected int edad;
-    protected char sexo;
-    protected String tipo_documento;
-    protected long num_documento;
-    protected enum TPD {CC, TI, PASAPORTE, CE}
-    protected TPD tipoDocumento;
-    protected long numDocumento;
-    protected String telefono;
-    protected String direccion;
-    protected String correo;
-    protected static int numPersonas=0;
-    protected static ArrayList<Persona> personas= new ArrayList<Persona>();  //guarda todas las nstancias de la clase
+    private String nombre;
+    private Integer edad;
+    private Character sexo;
+    private String tipo_documento;
+    private String num_documento;
+    private String telefono;
+    private String direccion;
+    private String correo;
 
-    //constructores----------------------------------------------------------
-    public Persona(){
-        numPersonas++;
+    public Persona() {
     }
-    public Persona(String nombre, int edad, TPD tipoDocumento ,long numDocumento, char sexo, String telefono, String direccion, String correo) {
+
+    public Persona(String nombre, Integer edad, Character sexo, String tipo_documento, String num_documento, String telefono, String direccion, String correo) {
         this.nombre = nombre;
         this.edad = edad;
-        this.tipoDocumento = tipoDocumento;
-        this.numDocumento = numDocumento;
         this.sexo = sexo;
+        this.tipo_documento = tipo_documento;
+        this.num_documento = num_documento;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
-        numPersonas++;
-        addPersonas(this);
     }
-    
-    public Persona (String nombre, int edad, TPD tipoDocumento ,long numDocumento, char sexo) {
-     	 this.nombre = nombre;
-         this.edad = edad;
-         this.tipoDocumento = tipoDocumento;
-         this.numDocumento = numDocumento;
-         this.sexo = sexo;
-         numPersonas++;
-         addPersonas(this);
-    }
-    
-    //-----------------------------------------------------------------------
-    public static void addPersonas(Persona p){
-        if (!personas.contains(p)){personas.add(p);}
+
+    public Persona(String nombre, String tipo_documento, String num_documento, String telefono) {
+        this.nombre = nombre;
+        this.tipo_documento = tipo_documento;
+        this.num_documento = num_documento;
+        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -58,36 +41,36 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
-    public char getSexo() {
+    public Character getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(Character sexo) {
         this.sexo = sexo;
     }
 
-    public TPD getTipoDocumento() {
-        return tipoDocumento;
+    public String getTipo_documento() {
+        return tipo_documento;
     }
 
-    public void setTipoDocumento(TPD tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
     }
 
-    public long getNumDocumento() {
-        return numDocumento;
+    public String getNum_documento() {
+        return num_documento;
     }
 
-    public void setNumDocumento(long numDocumento) {
-        this.numDocumento = numDocumento;
+    public void setNum_documento(String num_documento) {
+        this.num_documento = num_documento;
     }
 
     public String getTelefono() {
@@ -113,21 +96,8 @@ public abstract class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
-    //método abstracto, obligamos a que se use en empleado y cliente
-    
+
     public abstract String toString();
-    public abstract void ascender();
+    //public abstract void ascender();
     public abstract String personaRol();
-    
-    
-    
-    //-----------------------------------------------------------------------
-    
-    
-    
-    
-    
-    
 }
