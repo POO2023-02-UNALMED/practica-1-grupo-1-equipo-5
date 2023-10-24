@@ -2,189 +2,116 @@ package gestorAplicacion.personas;
 import gestorAplicacion.Hotel.*;
 import java.util.ArrayList;
 
-public class Cliente extends Persona{
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
-    //Atributos especificos de clientes
-	public Pago pago;
-	private double dinero;
-	private Hotel hotel;
-    private long IDcliente;
+
+public class Cliente extends Persona {
+    private String idCliente;
+    private Hotel hotel;
+    private int puntos = 0;
     private Habitacion habitacion;
-    private int puntos;
-    private ArrayList<Pago> pagos= new ArrayList<Pago>();
 
-    private ArrayList<GestionReserva> Historia= new ArrayList<GestionReserva>();
-    private ArrayList<String> historia_comentario= new ArrayList<String>();
-    private enum MEMBRESIA {BASIC, PLATA, ORO, DIAMANTE};
-    private MEMBRESIA membresia;
+    private String membresia;
+    //enum membresia
     private int equipaje;
-    private ArrayList<GestionReserva> historia_reserva= new ArrayList<GestionReserva>();
-    private GestionReserva reserva;
-    private static ArrayList<Cliente>clientes=new ArrayList<>();
 
-    //Contructores---------------------------------------------------
-    
-    public Cliente(){
-        super();
-    }
-   
-    public Cliente(Pago pago){
-    	this.pago = pago;
-    }
-    
-    public Cliente(String nombre, int edad, TPD tipo_doc, long cedula, char sexo) {
-        super(nombre, edad, tipo_doc, cedula, sexo);
-    }
-    public Cliente(String nombre, int edad, TPD tipoDocumento, long numDocumento, char sexo, String telefono, String direccion, String correo, Hotel hotel, long IDcliente) {
-        super(nombre, edad, tipoDocumento, numDocumento, sexo, telefono, direccion, correo);
+    private LinkedList<GestionReserva> historial = new LinkedList<>();
+    private String historiaComentario;
+    private GestionReserva reserva;
+    private static List<Cliente> clientes = new ArrayList<>();
+
+    public Cliente(String nombre, String tipo_cedula, String numero_cedula, String telefono, String idCliente, Hotel hotel, String membresia, int equipaje, Habitacion habitacion) {
+        super(nombre, tipo_cedula, numero_cedula, telefono);
+        this.idCliente = idCliente;
         this.hotel = hotel;
-        this.IDcliente = IDcliente;
         this.puntos = 0;
-        this.membresia = Cliente.MEMBRESIA.BASIC;
+        this.membresia = membresia;
+        this.equipaje = equipaje;
+        this.habitacion = habitacion;
+        Cliente.addClientes(this);
     }
-    public Cliente(String nombre, int edad, TPD tipoDocumento, long numDocumento, char sexo, Hotel hotel, long IDcliente) {
-        super(nombre, edad, tipoDocumento, numDocumento, sexo);
-        this.hotel = hotel;
-        this.IDcliente = IDcliente;
-        this.puntos = 0;
-        this.membresia = Cliente.MEMBRESIA.BASIC;
+
+    public void solicitarServicio(int servicio) {
+        //Se hará con la posición del servicio en la lista de ellos
+        this.reserva.aggServicio(Servicio.getServicios().get(servicio));
+        this.puntos++;
     }
-    
-    public static ArrayList<Cliente>getClientes(){
+
+    public void cancelarServicio(int servicio) {
+        //Se hará con la posición del servicio en la lista de ellos
+        this.reserva.getServiciosAdicionales().remove(servicio);
+        this.puntos--;
+    }
+
+    public void realizarReserva(GestionReserva reserva) {
+        //Por reserva 20 puntos, por servicio adicional 1 punto
+        this.reserva = reserva;
+        this.historial.add(reserva);
+        this.puntos += 20;
+    }
+
+    public String consultaReserva() {
+        return this.reserva.toString();
+    }
+
+    public Boolean cancelarReserva(GestionReserva reserva) {
+        //Por el booleano se determina la respuesta en la ui
+        if (this.historial.isEmpty()) {
+            return false;
+        }
+        reserva.borrarReserva();
+        historial.removeLast();
+        this.reserva = null;
+        puntos-=20;
+        return true;
+    }
+
+    // Devuelve la factura con el total a pagar y la fecha de la creacion
+    public Pago generarFactura() {
+        double pagoReserva = this.habitacion.getPrecioxNoche() * this.reserva.getNochesXEstadia();
+        return new Pago(pagoReserva, this.reserva.getServiciosAdicionales(), LocalDate.now().toString());
+    }
+
+    public void pagarFactura() {
+        reserva.setEstado(true);
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public static List<Cliente> getClientes() {
         return clientes;
     }
-    public ArrayList<Pago> getPagos() {
-        return pagos;
-    }
-    public void setPago(Pago pago) {
-    	this.pago = pago;
-    }
-    public Hotel getHotel() {return hotel;}
 
-    public void setHotel(Hotel hotel) {this.hotel = hotel;}
-
-    public void setIDcliente(long IDcliente) {this.IDcliente = IDcliente;}
-
-    public long getIDcliente() {return IDcliente;}
-
-    public Habitacion getHabitacion() {return habitacion;}
-
-    public void setHabitacion(Habitacion habitacion) {this.habitacion = habitacion;}
-
-    public int getPuntos() {return puntos;}
-
-    public void setPuntos(int puntos) {this.puntos = puntos;}
-
-    public MEMBRESIA getMembresia() {return membresia;}
-
-    public void setMembresia(MEMBRESIA membresia) {this.membresia = membresia;}
-
-    public int getEquipaje() {return equipaje;}
-
-    public ArrayList<GestionReserva> getHistoriaReserva() {return historia_reserva;}
-
-    public void setHistoriaReserva(ArrayList<GestionReserva> historia_reserva) {this.historia_reserva = historia_reserva;}
-
-    public GestionReserva getReserva() {return reserva;}
-
-    public double getDinero() {
-        return dinero;
+    public static Cliente getClienteById(String id) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getNum_documento().equals(id)) {
+                return cliente;
+            }
+        }
+        return null;
     }
 
-    public void setDinero(double d) {
-        this.dinero =  d;
+    public static void addClientes(Cliente cliente) {
+        Cliente.clientes.add(cliente);
     }
-    
-    //----------------------------------------------------------------
-    //usando el metodo abstracto de la clase padre Persona
-    
+
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\n" +
-               "Edad: " + edad + "\n" +
-               "Cédula: " + num_documento + "\n" +
-               "Sexo: " + sexo + "\n" +
-               "Hotel: " + hotel.getNombre() + "\n" + // Suponiendo que Hotel tiene un método getNombre()
-               "Habitación: " + habitacion.getNumero()+// Suponiendo que Habitacion tiene un método getNumeroHabitacion()
-               "Hotel: " + hotel.getNombre() + "\n" + 
-               "Habitación: " + habitacion.getNumero();
-
+        return "Cliente" +'\n' +
+                "idCliente:" + idCliente + '\n' +
+                "Nombre: " + getNombre() +'\n' +
+                "CC:" + getNum_documento() +'\n' +
+                "Puntos:" + getPuntos() +'\n';
     }
 
-    //-----------------------------------------------------------------
-    
-    //Sitema de puntos (Funcionalidad)
-    public void acumlarPuntos(Pago pago) {
-    	int puntosGanados= (int) (pago.getTotalPago()/15000);
-    	puntos+=puntosGanados; //Agregra puntos al atributo puntos de la clase
-    }    
-    public String canjearPuntos(int puntos) {
-        if (puntos <= this.puntos) {
-            double descuento = 0.0;
-          
-            switch (membresia) { //Dependiendo de su membresia se evalua su descuento
-                case BASIC:
-                    descuento = puntos * 5000.0;
-                    break;
-                case PLATA:
-                    descuento = puntos * 7000.0;
-                    break;
-                case ORO:
-                    descuento = puntos * 7500.0;
-                    break;
-                case DIAMANTE:
-                    descuento = puntos * 8000.0;
-                    break;
-                default:
-                    break;
-            }
-            
-            if (reserva != null) {
-                double total=reserva.getFactura().getTotalPago();
-                reserva.getFactura().setTotalPago(total-descuento); //cambia el valor total a pagar por el precio tras aplicar el descuento
-            }
-            this.puntos -= puntos;
-            return "Canje exitoso, se ha aplicado un descuento de " + descuento + " pesos";
-        } 
-        else {
-            return "Puntos insuficientes para canjear";
-        }
-    }
-    
-    public void ascender() { //este metodo se ejecuta automaticamente por cada reserva creada en la clase reserva
-        int cantidadReservas = this.historia_reserva.size(); 
-        
-        if (cantidadReservas > 15) {
-            this.membresia = MEMBRESIA.DIAMANTE; 
-        } 
-        else if (cantidadReservas > 10) {
-            this.membresia = MEMBRESIA.ORO; 
-        } 
-        else if (cantidadReservas > 5) {
-            this.membresia = MEMBRESIA.PLATA; 
-        }
-    }
-    
+    @Override
     public String personaRol() {
-    	int cantidadReservas = this.historia_reserva.size();
-        if (cantidadReservas > 15) {
-            return "Eres un cliente DIAMANTE.";
-        } 
-        else if (cantidadReservas > 10) {
-            return "Eres un cliente ORO.";
-        } 
-        else if (cantidadReservas > 5) {
-            return "Eres un cliente PLATA.";
-        } 
-        else {
-            return "Eres un cliente BASIC.";
-        }
-    	
+        return "Cliente";
     }
-
-    
-  //-----------------------------------------------------------------
-    
-    
-    
 }
