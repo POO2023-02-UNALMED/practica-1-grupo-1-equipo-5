@@ -1,74 +1,73 @@
 package gestorAplicacion.Hotel;
 
-public class Habitacion {
-    //Atributos----------------------------------------------
-	private Hotel hotel;
-	private int num_habitacion;
+public class Habitacion implements Serializable {
+    private Hotel hotel;
+    private String numHabitacion;
     private int capacidad;
-    private double precio;
-    private String tipo;
-    private boolean ocupada;
-    private double calificacion;
-    private String resenas;
+    private double precioxNoche;
+    private TipoHabitacion tipo;
+    private Boolean ocupacion;
 
-    //Contructores
-    public Habitacion(){
-    }
-    public Habitacion(int capacidad, double precio, Hotel hotel){
-        this.capacidad=capacidad;
-        this.precio=precio;
-        this.hotel=hotel;
-        this.hotel.addHabitacion(this);
-        this.calificacion=this.hotel.calificacion;
+    public Habitacion() {
     }
 
-    //metodos (provisional)
-    public void addResena(String resena){
-        this.resenas = resena+"\n"+ this.resenas;
+    public Habitacion(Hotel hotel, String numHabitacion, int capacidad, double precioxNoche, TipoHabitacion tipo, Boolean ocupacion) {
+        this.hotel = hotel;
+        this.numHabitacion = numHabitacion;
+        this.capacidad = capacidad;
+        this.precioxNoche = precioxNoche;
+        this.tipo = tipo;
+        this.ocupacion = ocupacion;
     }
 
-    public void setHotel(Hotel hotel) {this.hotel = hotel;}
-    public Hotel getHotel() {return hotel;}
-
-    public void setPrecio(double precio) {this.precio = precio;}
-    public double getPrecio() {return precio;}
-
-    public void setCalificacion(double calificacion){
-        if (calificacion<=5 && calificacion>=0) {
-            this.calificacion = calificacion;
-            if (calificacion>4.5){
-                this.precio*=1.15; //las habitaciones con mayor calificacion aumentan un 15% su precio
-            }
-        }else{/*excepcion por si no se da una calificacion valida*/}
+    public void ocupar(){
+        ocupacion = true;
     }
-    public double getCalificacion() {return calificacion;}
-
-    public void setNumero(int num_habitacion) {this.num_habitacion = num_habitacion;}
-    public int getNumero() {return num_habitacion;}
-
-    public void setResenas(String resenas) {this.resenas = resenas;}
-    public String getResenas(){return(this.resenas);}
-
-    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
-    public int getCapacidad() {return capacidad;}
-
-    public void ocupar() {this.ocupada = true;}
-    public boolean isOcupada(){return this.ocupada;}
-    public String estado(){
-        if (this.isOcupada()){return "Ocupada";}
-        else{return "Libre";}
+    public void desocupar(){
+        ocupacion = false;
+    }
+    public Boolean getOcupacion(){
+        return ocupacion;
     }
 
-    public void setTipo(String tipo) {this.tipo = tipo;}
-    public String getTipo() {return tipo;}
+    public String getNumHabitacion() {
+        return numHabitacion;
+    }
 
-    //toString
+    public void setNumHabitacion(String numHabitacion) {
+        this.numHabitacion = numHabitacion;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public double getPrecioxNoche() {
+        return precioxNoche;
+    }
+
+    public void setPrecioxNoche(double precioxNoche) {
+        this.precioxNoche = this.tipo.getPrecio();
+    }
+
+    public TipoHabitacion getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoHabitacion tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
-    public String toString(){
-        return "habitacion numero: "+this.num_habitacion+" del hotel "+ this.hotel+".\n" +
-                "estado: "+this.estado()+"\n"+
-                "Capacidad para "+this.capacidad+" personas.\n"+
-                "Precio: $"+this.precio+" la noche.\n"+
-                "Calificacion: "+this.calificacion+"\n\nReseñas: "+this.resenas;
+    public String toString() {
+        return "Habitacion: " +'\n' +
+                "numHabitacion: '" + numHabitacion + '\n' +
+                ", precioxNoche: " + precioxNoche +'\n' +
+                ", tipo: " + tipo +'\n' +
+                ", ocupacion: " + ocupacion +'\n';
     }
 }
